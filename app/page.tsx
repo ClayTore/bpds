@@ -103,13 +103,32 @@ export default function Home() {
                 }`}
               />
 
-              <button
-                onClick={() => handleDelete(todo.id)}
-                aria-label="Eliminar tarea"
-                className="shrink-0 text-zinc-400 transition-colors hover:text-red-500"
-              >
-                🗑
-              </button>
+              {tareaAConfirmar === todo.id ? (
+                <div className="flex shrink-0 items-center gap-2 text-xs">
+                  <button
+                    onClick={() => handleDelete(todo.id)}
+                    aria-label="Confirmar eliminación"
+                    className="font-medium text-red-500 hover:text-red-600"
+                  >
+                    Sí
+                  </button>
+                  <button
+                    onClick={handleCancelDelete}
+                    aria-label="Cancelar eliminación"
+                    className="text-zinc-400 hover:text-zinc-600"
+                  >
+                    No
+                  </button>
+                </div>
+              ) : (
+                  <button
+                    onClick={() => handleRequestDelete(todo.id)}
+                    aria-label="Eliminar tarea"
+                    className="shrink-0 text-zinc-400 transition-colors hover:text-red-500"
+                  >
+                    🗑️
+                  </button>
+              )}
             </li>
           ))}
         </ul>
