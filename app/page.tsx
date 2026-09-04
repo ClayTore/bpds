@@ -60,6 +60,9 @@ export default function Home() {
         <h1 className="mb-4 text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
           MIS TAREAS
         </h1>
+        <p className="mb-4 text-xs text-zinc-500 dark:text-zinc-400">
+          {pendientes} pendientes - {completadas} completadas
+        </p>
 
         <input
           type="text"
