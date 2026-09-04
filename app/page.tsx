@@ -12,6 +12,8 @@ export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [nuevaTarea, setNuevaTarea] = useState("");
   const [tareaAConfirmar, setTareaAConfirmar] = useState<string|null>(null);
+  const pendientes = todos.filter((t) => !t.completado).length;
+  const completadas = todos.filter((t) => t.completado).length;
 
   function handleCreate(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key !== "Enter") return;
