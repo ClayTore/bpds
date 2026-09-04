@@ -11,6 +11,7 @@ type Todo = {
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [nuevaTarea, setNuevaTarea] = useState("");
+  const [tareaAConfirmar, setTareaAConfirmar] = useState<string|null>(null);
 
   function handleCreate(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key !== "Enter") return;
@@ -40,8 +41,15 @@ export default function Home() {
     );
   }
 
+  function handleRequestDelete(id: string) {
+    setTareaAConfirmar(id);
+  }
+  function handleCancelDelete() {
+    setTareaAConfirmar(null);
+  }
   function handleDelete(id: string) {
     setTodos((prev) => prev.filter((t) => t.id !== id));
+    setTareaAConfirmar(null);
   }
 
   return (
