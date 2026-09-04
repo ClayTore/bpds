@@ -11,6 +11,7 @@ type Todo = {
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [nuevaTarea, setNuevaTarea] = useState("");
+  const [tareaAConfirmar, setTareaAConfirmar] = useState<string|null>(null);
 
   function handleCreate(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key !== "Enter") return;
@@ -40,8 +41,15 @@ export default function Home() {
     );
   }
 
+  function handleRequestDelete(id: string) {
+    setTareaAConfirmar(id);
+  }
+  function handleCancelDelete() {
+    setTareaAConfirmar(null);
+  }
   function handleDelete(id: string) {
     setTodos((prev) => prev.filter((t) => t.id !== id));
+    setTareaAConfirmar(null);
   }
 
   return (
@@ -87,6 +95,7 @@ export default function Home() {
               <input
                 type="text"
                 defaultValue={todo.texto}
+                onFocus={() => handleCancelDelete()}
                 onBlur={(e) => handleUpdateTexto(todo.id, e.target.value)}
                 className={`flex-1 bg-transparent text-sm outline-none ${
                   todo.completado
@@ -95,13 +104,32 @@ export default function Home() {
                 }`}
               />
 
-              <button
-                onClick={() => handleDelete(todo.id)}
-                aria-label="Eliminar tarea"
-                className="shrink-0 text-zinc-400 transition-colors hover:text-red-500"
-              >
-                🗑
-              </button>
+              {tareaAConfirmar === todo.id ? (
+                <div className="flex shrink-0 items-center gap-2 text-xs">
+                  <button
+                    onClick={() => handleDelete(todo.id)}
+                    aria-label="Confirmar eliminación"
+                    className="font-medium text-red-500 hover:text-red-600"
+                  >
+                    Sí
+                  </button>
+                  <button
+                    onClick={handleCancelDelete}
+                    aria-label="Cancelar eliminación"
+                    className="text-zinc-400 hover:text-zinc-600"
+                  >
+                    No
+                  </button>
+                </div>
+              ) : (
+                  <button
+                    onClick={() => handleRequestDelete(todo.id)}
+                    aria-label="Eliminar tarea"
+                    className="shrink-0 text-zinc-400 transition-colors hover:text-red-500"
+                  >
+                    🗑️
+                  </button>
+              )}
             </li>
           ))}
         </ul>
