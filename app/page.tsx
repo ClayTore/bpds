@@ -95,6 +95,7 @@ export default function Home() {
               <input
                 type="text"
                 defaultValue={todo.texto}
+                onFocus={() => handleCancelDelete()}
                 onBlur={(e) => handleUpdateTexto(todo.id, e.target.value)}
                 className={`flex-1 bg-transparent text-sm outline-none ${
                   todo.completado
