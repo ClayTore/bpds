@@ -12,6 +12,8 @@ export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [nuevaTarea, setNuevaTarea] = useState("");
   const [tareaAConfirmar, setTareaAConfirmar] = useState<string|null>(null);
+  const pendientes = todos.filter((t) => !t.completado).length;
+  const completadas = todos.filter((t) => t.completado).length;
 
   function handleCreate(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key !== "Enter") return;
@@ -58,6 +60,9 @@ export default function Home() {
         <h1 className="mb-4 text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
           MIS TAREAS
         </h1>
+        <p className="mb-4 text-xs text-zinc-500 dark:text-zinc-400">
+          {pendientes} pendientes - {completadas} completadas
+        </p>
 
         <input
           type="text"
