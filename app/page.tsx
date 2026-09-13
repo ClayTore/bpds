@@ -63,9 +63,18 @@ export default function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="w-full max-w-md rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
-        <h1 className="mb-4 text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-          MIS TAREAS
-        </h1>
+        <div className="mb-4 flex items-center justify-between">
+          <h1 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+            MIS TAREAS
+          </h1>
+          
+          <button
+          onClick={() => setPapeleraAbierta((prev) => !prev)}
+          className="flex items-center gap-1 rounded-lg border border-zinc-200 px-2 py-1 text-xs text-zinc-500 hover:border-zinc-400 dark:border-zinc-700 dark:text-zinc-400"
+          >
+            🗑️ Papelera ({tareasEliminadas.length})
+          </button>
+        </div>
         <p className="mb-4 text-xs text-zinc-500 dark:text-zinc-400">
           {pendientes} pendientes - {completadas} completadas
         </p>
