@@ -12,6 +12,8 @@ export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [nuevaTarea, setNuevaTarea] = useState("");
   const [tareaAConfirmar, setTareaAConfirmar] = useState<string|null>(null);
+  const [tareasEliminadas, setTareasEliminadas] = useState<string[]>([]);
+  const [papeleraAbierta, setPapeleraAbierta] = useState(false);
   const pendientes = todos.filter((t) => !t.completado).length;
   const completadas = todos.filter((t) => t.completado).length;
 
@@ -50,6 +52,10 @@ export default function Home() {
     setTareaAConfirmar(null);
   }
   function handleDelete(id: string) {
+    const tarea = todos.find((t) => t.id === id);
+    if (tarea) {
+      setTareasEliminadas((prev) => [tarea.texto, ...prev]);
+    }
     setTodos((prev) => prev.filter((t) => t.id !== id));
     setTareaAConfirmar(null);
   }
