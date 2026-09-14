@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+BPDS — Task List
+A simple task management application built with Next.js, React, and TypeScript for the Good Software Development Practices course.
 
-## Getting Started
+Getting Started
+Clone the repository and install the dependencies:
+npm install
 
-First, run the development server:
+Running Locally
+Start the development server with:
+npm run juju
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Note: The development script is named juju instead of dev, following the professor's instructions starting from the second term.
+Open http://localhost:3000 in your browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Features
+* Create tasks — Type a task in the input field and press Enter.
+* Edit tasks — Click on a task's text to edit it.
+* Complete tasks — Click the circle next to a task to mark it as completed.
+* Task counter — Shows the number of pending and completed tasks and updates automatically.
+* Delete confirmation — Before deleting a task, a confirmation with "Yes" and "No" is displayed.
+* Trash — Deleted tasks are stored in a trash dropdown. The Trash button shows the number of deleted tasks and lets you view them.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Tech Stack
+* Next.js
+* React
+* TypeScript
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Team Members
+* ClayTore — Kennyc Hamburger
+* sacuna12 — Susan Acuña
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Screenshots
+* Task List 
+![Lista de tareas](./tarea.png)
+* Trash
+![Papelera abierta](./papelera.png)
