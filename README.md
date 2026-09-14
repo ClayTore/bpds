@@ -31,6 +31,6 @@ Team Members
 
 Screenshots
 * Task List 
-![Lista de tareas](./tarea.png)
+![Lista de tareas](./screenshots/tarea.png)
 * Trash
-![Papelera abierta](./papelera.png)
+![Papelera abierta](./screenshots/papelera.png)
