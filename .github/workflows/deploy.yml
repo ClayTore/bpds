@@ -7,11 +7,16 @@ on:
 
 jobs:
   deploy:
+    name: Deploy EC2 - ${{ matrix.owner }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        server: ["", "_2"]
+        include:
+          - server: ""
+            owner: Kennyc
+          - server: "_2"
+            owner: Susan
     steps:
       - uses: actions/checkout@v4
 
