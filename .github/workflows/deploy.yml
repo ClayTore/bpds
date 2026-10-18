@@ -8,6 +8,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        server: ["", "_2"]
     steps:
       - uses: actions/checkout@v4
 
@@ -22,11 +26,11 @@ jobs:
       - name: Configurar SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/key.pem
+          echo "${{ secrets[format('EC2_SSH_KEY{0}', matrix.server)] }}" > ~/.ssh/key.pem
           chmod 600 ~/.ssh/key.pem
-          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -H ${{ secrets[format('EC2_HOST{0}', matrix.server)] }} >> ~/.ssh/known_hosts
 
       - name: Copiar out/ a EC2
         run: |
           rsync -avz --delete -e "ssh -i ~/.ssh/key.pem" \
-            ./out/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/html/
+            ./out/ ${{ secrets[format('EC2_USER{0}', matrix.server)] }}@${{ secrets[format('EC2_HOST{0}', matrix.server)] }}:/var/www/html/
