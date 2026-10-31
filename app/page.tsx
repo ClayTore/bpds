@@ -9,6 +9,10 @@ type Todo = {
 };
 
 export default function Home() {
+  const generateId = (): string =>
+  typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
+    ? crypto.randomUUID()
+    : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
   const [todos, setTodos] = useState<Todo[]>([]);
   const [nuevaTarea, setNuevaTarea] = useState("");
   const [tareaAConfirmar, setTareaAConfirmar] = useState<string|null>(null);
@@ -25,7 +29,7 @@ export default function Home() {
 
     setTodos((prev) => [
       ...prev,
-      { id: crypto.randomUUID(), texto, completado: false },
+      { id: generateId(), texto, completado: false },
     ]);
     setNuevaTarea("");
   }
